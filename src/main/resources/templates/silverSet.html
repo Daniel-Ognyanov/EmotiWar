@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
+    <title>EmotiWar</title>
+</head>
+
+<body>
+<div id="container">
+    <div th:replace="fragments/commons :: header"></div>
+
+    <div th:object="${currEmoti}" class="hero-form">
+        <div class="hero-row">
+            <span th:text="${username}"></span>
+        </div>
+
+        <div class="hero-row">
+            <span>Strenght:</span>
+            <span th:text="*{strength}"></span>
+            <br>
+            <span>Armor:</span>
+            <span th:text="*{armor}"></span>
+        </div>
+
+        <div class="hero-row">
+            <span>Wins:</span>
+            <span th:text="*{wins}"></span>
+            <br>
+            <span>Loses:</span>
+            <span th:text="*{loses}"></span>
+        </div>
+
+        <div class="hero-row">
+            <span>You have </span>
+            <span th:text="*{coins}"></span>
+            <span> coins</span>
+        </div>
+        <div class="hero-row">
+            <span>Available coins to collect: </span>
+            <div th:text="*{coinsToCollect}"></div>
+            <a href="/collectCoins" class="coins-col">Collect Coins</a>
+        </div>
+    </div>
+
+    <div class="set-div">
+        <div class="rightSide-btn">
+            <span>Silver Weapon</span>
+            <br>
+            <a class="setBuy-btn" th:href="@{/shop/copperSet/buy/weapon/{id}(id=1)}">Buy</a>
+        </div>
+        <div class="rightSide-btn">
+            <span>Silver Shield </span><br>
+            <a class="setBuy-btn" th:href="@{/shop/copperSet/buy/shield/{id}(id=2)}">Buy</a>
+        </div>
+        <div class="rightSide-btn">
+            <span>Silver Head</span><br>
+            <a class="setBuy-btn" th:href="@{/shop/copperSet/buy/head/{id}(id=3)}">Buy</a>
+        </div>
+        <div class="rightSide-btn">
+            <span>Silver Boots</span><br>
+            <a class="setBuy-btn" th:href="@{/shop/copperSet/buy/boots/{id}(id=4)}">Buy</a>
+        </div>
+        <div class="rightSide-btn">
+            <span>Silver Trinkets</span><br>
+            <a class="setBuy-btn" th:href="@{/shop/copperSet/buy/trinkets/{id}(id=5)}">Buy</a>
+        </div>
+
+        <p th:if="${successBuy}">Successfully bought item!</p>
+        <p th:if="${noCoinsError}">Not enough coins!</p>
+    </div>
+    <div th:replace="fragments/commons :: rightSide"></div>
+</div>
+
+</body>
+
+</html>
