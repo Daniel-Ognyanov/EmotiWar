@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>EmotiWar</title>
+    <link rel="stylesheet" href="/css/reset-css.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+---------------------------// HEADER
+<div th:fragment="header" class="nav-bar">
+    <a class="nav-item home-btn" sec:authorize="!isAuthenticated()" href="/">Home</a>
+    <a class="nav-item home-btn" sec:authorize="isAuthenticated()" href="/home">Home</a>
+    <form method="POST" th:action="@{/logout}">
+            <button class="nav-item" sec:authorize="isAuthenticated()" type="submit">Logout</button>
+        </form>
+        <a class="nav-item signupbtn" sec:authorize="!isAuthenticated()" href="/users/signup">Sign Up</a>
+        <a class="nav-item " sec:authorize="!isAuthenticated()" href="/users/login">Login</a>
+        <a class="nav-item " sec:authorize="hasRole('ROLE_ADMIN')" href="/admin">Admin Panel</a>
+</div>
+
+-------------------------// RIGHT LABEL
+<div th:fragment="rightSide" class="rightSide">
+    <div class="rightSide-btn"><a class="rightSideA" href="/fight">Fight</a></div>
+    <div class="rightSide-btn"><a class="rightSideA" href="/shop/all">Shop</a></div>
+    <div class="rightSide-btn"><a class="rightSideA" href="/rankList">Rank List</a></div>
+    <div class="rightSide-btn"><a class="rightSideA" href="/inventory">Inventory</a></div>
+</div>
+</body>
+</html>

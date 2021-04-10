@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
+    <title>Sign Up</title>
+
+
+</head>
+<body>
+
+<div id="container">
+    <div th:replace="fragments/commons :: header"></div>
+
+
+    <form th:object="${registrationBindingModel}" th:action="@{/users/signup}" method="POST" class="signUp">
+        <div class="h1"><h1>Sign Up</h1></div>
+        <br><br>
+        <div class="reg-row">
+            <label class="reg-label" for="email">Email</label>
+            <input th:value="*{email}" class="reg-input" id="email" type="text" name="email"
+                   placeholder="Email"/>
+            <p th:if="${#fields.hasErrors('email')}" class="reg-p">Valid Email is required.</p>
+            <p class="reg-p" th:if="${errorEmailExists}">Email already exists.</p>
+        </div>
+
+        <div class="reg-row">
+            <label class="reg-label" for="username">Username</label>
+            <input th:value="*{username}" class="reg-input" id="username" type="text" name="username"
+                   placeholder="Username"/>
+
+            <p th:if="${#fields.hasErrors('username')}" class="reg-p">Username must be 2-30 symbols.</p>
+            <p th:if="${errorUserExist}" class="reg-p">Username already exists.</p>
+        </div>
+
+        <div class="reg-row">
+            <label class="reg-label" for="password">Password</label>
+            <input class="reg-input" id="password" type="password" name="password"
+                   placeholder="Password"/>
+            <p th:if="${#fields.hasErrors('password')}" class="reg-p">Valid password is required.</p>
+        </div>
+
+        <div class="reg-row">
+            <label class="reg-label" for="confirmPassword">Confirm Password</label>
+            <input class="reg-input" id="confirmPassword" type="password" name="confirmPassword"
+                   placeholder="Confirm Password"/>
+            <p class="reg-p" th:if="${errorPasswordMatch}">Password don't match.</p>
+        </div>
+
+
+        <button class="submit" type="submit">Sign Up</button>
+        <br>
+
+
+    </form>
+</div>
+</body>
+</html>

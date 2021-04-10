@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
+    <title>Inventory</title>
+</head>
+
+<body>
+<div id="container" class="container">
+    <div th:replace="fragments/commons :: header"></div>
+
+
+    <div th:object="${currEmoti}" class="hero-form">
+        <div class="hero-row">
+            <div class="heroRowUsername">
+                <span th:text="${username}">sdsadsadsadasd</span>
+            </div>
+        </div>
+
+        <div class="hero-row">
+            <div class="heroRowLabel">
+                <span>Strenght:</span><br>
+                <span>Armor:</span>
+            </div>
+            <div class="heroRowStats">
+                <span th:text="*{strength}">100</span><br>
+                <span th:text="*{armor}">100</span>
+            </div>
+        </div>
+
+        <div class="hero-row">
+            <div class="heroRowLabel">
+                <span>Wins:</span> <br>
+                <span>Loses:</span>
+            </div>
+            <div class="heroRowStats">
+                <span th:text="*{wins}">50</span><br>
+                <span th:text="*{loses}">3</span>
+            </div>
+        </div>
+
+        <div class="hero-row">
+            <div class="heroRowUsername">
+                <span>You have </span>
+                <span th:text="*{coins}"></span>
+                <span> coins</span>
+            </div>
+        </div>
+        <div class="hero-row">
+            <span>Available coins to collect: </span>
+            <div th:text="*{coinsToCollect}">6</div>
+            <a href="/collectCoins" class="coins-col">Collect Coins</a>
+        </div>
+    </div>
+
+    <div class="shopLabel">
+        <div th:object="${currEmoti}" class="inventory">
+            <span>Weapon: </span>
+            <span th:text="*{getWeapon().name}"></span><br><br>
+            <span>Shield: </span>
+            <span th:text="*{getShield().name}"></span><br><br>
+            <span>Head:</span>
+            <span th:text="*{getHead().name}"></span><br><br>
+            <span>Boots</span>
+            <span th:text="*{getBoots().name}"></span><br><br>
+            <span>Trinkets:</span>
+            <span th:text="*{getTrinkets().name}"></span>
+        </div>
+    </div>
+    <div class="set-div"></div>
+
+    <div th:fragment="rightSide" class="rightSide">
+        <div class="rightSide-btn"><a class="rightSideA" href="/fight">Fight</a></div>
+        <div class="rightSide-btn"><a class="rightSideA" href="/shop/all">Shop</a></div>
+        <div class="rightSide-btn"><a class="rightSideA" href="/rankList">Rank List</a></div>
+        <div class="rightSide-btn"><a class="rightSideA" href="/inventory">Inventory</a></div>
+    </div>
+</div>
+</body>
+
+</html>

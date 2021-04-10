@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
+    <title>EmotiWar</title>
+</head>
+<body>
+<div th:replace="fragments/commons :: header"></div>
+    <h1>Admin Controller</h1>
+    <div>
+        <h2>Role Set</h2>
+        <form th:action="@{/changeRole}" method="POST">
+            <input name="username" type="text">
+            <select name="role">
+                <option value="USER">USER</option>
+                <option value="ADMIN">ADMIN</option>
+            </select>
+
+            <button type="submit">Set</button>
+
+            <text th:if="*{usernameNotFound}">Username not found!</text>
+            <text th:if="*{roleChange}">Role have been set!</text>
+
+        </form>
+
+    </div>
+
+
+</body>
+</html>

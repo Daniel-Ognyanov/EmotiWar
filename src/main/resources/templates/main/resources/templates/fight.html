@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
+    <title>EmotiWar</title>
+</head>
+
+<body>
+<div id="container" class="container">
+    <div th:replace="fragments/commons :: header"></div>
+
+
+    <div th:object="${currEmoti}" class="hero-form">
+        <div class="hero-row">
+            <div class="heroRowUsername">
+                <span th:text="${username}"></span>
+            </div>
+        </div>
+
+        <div class="hero-row">
+            <div class="heroRowLabel">
+                <span>Strenght:</span><br>
+                <span>Armor:</span>
+            </div>
+            <div class="heroRowStats">
+                <span th:text="*{strength}"></span><br>
+                <span th:text="*{armor}"></span>
+            </div>
+        </div>
+
+        <div class="hero-row">
+            <div class="heroRowLabel">
+                <span>Wins:</span> <br>
+                <span>Loses:</span>
+            </div>
+            <div class="heroRowStats">
+                <span th:text="*{wins}"></span><br>
+                <span th:text="*{loses}"></span>
+            </div>
+        </div>
+
+        <div class="hero-row">
+            <div class="heroRowUsername">
+                <span>You have </span>
+                <span th:text="*{coins}"></span>
+                <span> coins</span>
+            </div>
+        </div>
+        <div class="hero-row">
+            <span>Available coins to collect: </span>
+            <div th:text="*{coinsToCollect}"></div>
+            <a href="/collectCoins" class="coins-col">Collect Coins</a>
+        </div>
+    </div>
+
+
+    <div class="shopLabel">
+        <div class="line-bar">
+            <span class="battles-bar">You have</span>
+            <span class="battles-bar"th:text="${currEmoti.battles}"></span>
+            <span class="battles-bar">battles left for today.</span><br><br>
+            <a class="fight-btn" href="/attack" th:if="*{haveFights}">Attack</a>
+        </div>
+    </div>
+
+    <div class="set-div"></div>
+
+    <div th:fragment="rightSide" class="rightSide">
+        <div class="rightSide-btn"><a class="rightSideA" href="/fight">Fight</a></div>
+        <div class="rightSide-btn"><a class="rightSideA" href="/shop/all">Shop</a></div>
+        <div class="rightSide-btn"><a class="rightSideA" href="/rankList">Rank List</a></div>
+    </div>
+
+</div>
+</body>
+
+</html>

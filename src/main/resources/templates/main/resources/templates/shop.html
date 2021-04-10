@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
+    <title>Shop</title>
+</head>
+
+<body>
+
+<div id="container">
+    <div th:replace="fragments/commons :: header"></div>
+    <div th:object="${currEmoti}" class="hero-form">
+        <div class="hero-row">
+            <div class="heroRowUsername">
+                <span th:text="${username}">sdsadsadsadasd</span>
+            </div>
+        </div>
+
+        <div class="hero-row">
+            <div class="heroRowLabel">
+                <span>Strenght:</span><br>
+                <span>Armor:</span>
+            </div>
+            <div class="heroRowStats">
+                <span th:text="*{strength}">100</span><br>
+                <span th:text="*{armor}">100</span>
+            </div>
+        </div>
+
+        <div class="hero-row">
+            <div class="heroRowLabel">
+                <span>Wins:</span> <br>
+                <span>Loses:</span>
+            </div>
+            <div class="heroRowStats">
+                <span th:text="*{wins}">50</span><br>
+                <span th:text="*{loses}">3</span>
+            </div>
+        </div>
+
+        <div class="hero-row">
+            <div class="heroRowUsername">
+                <span>You have </span>
+                <span th:text="*{coins}"></span>
+                <span> coins</span>
+            </div>
+        </div>
+        <div class="hero-row">
+            <span>Available coins to collect: </span>
+            <div th:text="*{coinsToCollect}">6</div>
+            <a href="/collectCoins" class="coins-col">Collect Coins</a>
+        </div>
+    </div>
+    <div class="shopLabel">
+        <a class="shop-btn" th:href="@{/shop/copperSet}">Copper Set</a> <br>
+        <a class="shop-btn" th:href="@{/shop/silverSet}">Silver Set</a> <br>
+        <a class="shop-btn" th:href="@{/shop/goldSet}">Gold Set</a>
+    </div>
+    <div class="set-div"></div>
+    <div th:replace="fragments/commons :: rightSide"></div>
+</div>
+</body>
+
+</html>
